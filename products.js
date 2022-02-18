@@ -95,7 +95,9 @@ const app = createApp({
                 //↓ 因物件傳參考 編輯時立即影響畫面內容
                 // this.temp=product;
                 //因畫面(產品列表)沒有圖片 所以可以淺層拷貝就好
-                this.temp = {...product};
+                // this.temp = {...product};
+                //深層拷貝↓
+                this.temp = JSON.parse(JSON.stringify(product));
                 if(this.temp.imagesUrl){
                     this.isNew = false;
                     myModal.show();
@@ -106,7 +108,8 @@ const app = createApp({
                 }
             }else if(status==='del'){
                
-                this.temp = {...product};
+                // this.temp = {...product};
+                this.temp = JSON.parse(JSON.stringify(product));
                 delProductModal.show();
             }   
         },
